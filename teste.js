@@ -7,6 +7,11 @@
 ● Disponibilidade - se o livro está disponível ou não (verdadeiro ou falso);
 
 2. Crie alguns objetos da classe Livro e adicione-os em um array;
+
+Lista 26.2:
+1. Crie um método construtor para a classe Livro que recebe como parâmetro as
+informações que serão atribuídas as propriedades, com exceção de
+“Disponibilidade” que deve ter por padrão o valor “true” quando o objeto for criado;
 */
 
 
@@ -16,6 +21,13 @@ class Livro {
     Editoras = []
     AnosPublicacoes = []
     Disponibilidade = []
+
+    constructor(Titulos, Autores, Editoras, AnosPublicacoes){
+        this.Titulos = Titulos
+        this.Autores = Autores
+        this.Editoras = Editoras
+        this.AnosPublicacoes = AnosPublicacoes
+    }
 }
 
 let meuLivro = new Livro()
@@ -60,12 +72,30 @@ passado como parâmetro o nome do livro, então trocar o valor da propriedade de
 disponibilidade desse livro para true;
 
 7. Crie um objeto da classe Biblioteca e chame seus métodos.
+
+Lista 26.2:
+2. Na classe Biblioteca, adicione uma nova propriedade “AcervoDeLivros” que deve
+ser um array;
+
+3. Crie um método construtor para a classe Biblioteca que deve receber como
+parâmetro as informações que serão atribuídas as propriedades, com exceção da
+“AcervoDeLivros”;
+
+4. Na classe Biblioteca crie um método para adicionar um novo Livro na propriedade
+“AcervoDeLivros”;
 */
 
 class Biblioteca {
     Nome
     Endereco
     Telefone
+    AcervosDeLivros = []
+
+    constructor(Nome, Endereco, Telefone){
+        this.Nome = Nome
+        this.Endereco = Endereco
+        this.Telefone = Telefone
+    }
 
     BuscarLivro(meuLivro,tituloBusca) {
        
@@ -101,9 +131,21 @@ class Biblioteca {
             }
         }
     }
+
+    AdicionarLivroAcervoDeLivros(meuLivro, tituloBusca4){
+        
+        for(let index3 = 0; index3 < 3; index3++){
+            if(tituloBusca4 == meuLivro.Titulos[index3]){
+                this.AcervosDeLivros[index3] = meuLivro.Titulos[index3]
+            }
+        }
+    }
 }
 
 let minhaBiblioteca = new Biblioteca()
 minhaBiblioteca.Nome = "Espaço Leitura"
 minhaBiblioteca.Endereco = "Av. Paulista 2090"
 minhaBiblioteca.Telefone = "20718039"
+
+
+
