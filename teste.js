@@ -16,39 +16,27 @@ informações que serão atribuídas as propriedades, com exceção de
 
 
 class Livro {
-    Titulos = []
-    Autores = []
-    Editoras = []
-    AnosPublicacoes = []
-    Disponibilidade = []
+    Titulo
+    Autor
+    Editora
+    AnosPublicacao
+    Disponibilidade
 
-    constructor(Titulos, Autores, Editoras, AnosPublicacoes){
-        this.Titulos = Titulos
-        this.Autores = Autores
-        this.Editoras = Editoras
-        this.AnosPublicacoes = AnosPublicacoes
+    constructor(titulo, autor, editora, anospublicacao) {
+        this.Titulo = titulo
+        this.Autor = autor
+        this.Editora = editora
+        this.AnosPublicacao = anospublicacao
+        this.Disponibilidade = true
     }
 }
 
-let meuLivro = new Livro()
+let meuLivro1 = new Livro("Noruega", "Renato Shuweguer", "Editora Suma", 2020)
 
-meuLivro.Titulos[0] = "Noruega"
-meuLivro.Autores[0] = "Renato Shuweguer"
-meuLivro.Editoras[0] = "Suma"
-meuLivro.AnosPublicacoes[0] = 2020
-meuLivro.Disponibilidade[0] = true
+let meuLivro2 = new Livro("O colapso", "Francisco Bernardino", "Editora Intrínseca", 2010)
 
-meuLivro.Titulos[1] = "O colapso"
-meuLivro.Autores[1] = "Francisco Bernardino "
-meuLivro.Editoras[1] = "Editora Intrínseca"
-meuLivro.AnosPublicacoes[1] = 2010
-meuLivro.Disponibilidade[1] = true
+let meuLivro3 = new Livro("Patrimônio", "Calebe Swuan", "Editora Rocco", 2015)
 
-meuLivro.Titulos[2] = "Patrimônio"
-meuLivro.Autores[2] = "Calebe Swuan"
-meuLivro.Editoras[2] = "Editora Rocco"
-meuLivro.AnosPublicacoes[2] = 2015
-meuLivro.Disponibilidade[2] = false
 
 /*
 3. Crie uma classe Biblioteca com as seguintes propriedades:
@@ -89,56 +77,73 @@ class Biblioteca {
     Nome
     Endereco
     Telefone
-    AcervosDeLivros = []
 
-    constructor(Nome, Endereco, Telefone){
-        this.Nome = Nome
-        this.Endereco = Endereco
-        this.Telefone = Telefone
+    constructor(nome, endereco, telefone) {
+        this.Nome = nome
+        this.Endereco = endereco
+        this.Telefone = telefone
     }
 
-    BuscarLivro(meuLivro,tituloBusca) {
-       
-        for (let contador = 0; contador < 3; contador++) {
-            if (tituloBusca == meuLivro.Titulos[contador]) {
-                console.log("O nome do livro é: " + meuLivro.Titulos[contador])
-                console.log("O autor do livro é: " + meuLivro.Autores[contador])
-                console.log("A editora do Livro é: " + meuLivro.Editoras[contador])
-                console.log("O ano de publicação deste livro é: " + meuLivro.AnosPublicacoes[contador])
+    AcervosDeLivros = []
+
+
+
+    BuscarLivro(tituloBusca) {
+
+        for (let contador = 0; contador < this.AcervosDeLivros.length; contador++) {
+
+            if (tituloBusca == this.AcervosDeLivros[contador].Titulo) {
+
+                console.log("O nome do livro é: " + this.AcervosDeLivros[contador].Titulo)
+
+                console.log("O autor do livro é: " + this.AcervosDeLivros[contador].Autor)
+
+                console.log("A editora do Livro é: " + this.AcervosDeLivros[contador].Editora)
+
+                console.log("O ano de publicação deste livro é: " + this.AcervosDeLivros[contador].AnosPublicacao)
             }
         }
     }
 
-    Emprestimo(meuLivro,tituloBusca2) {
-        
-        for (let index = 0; index < 3; index++) {
-            if (tituloBusca2 == meuLivro.Titulos[index]) {
-                if (meuLivro.Disponibilidade[index] == true) {
-                    meuLivro.Disponibilidade[index] = false
+    Emprestimo(tituloBusca2) {
+
+        for (let index = 0; index < this.AcervosDeLivros.length; index++) {
+
+            if (tituloBusca2 == this.AcervosDeLivros[index].Titulo) {
+
+                if (this.AcervosDeLivros[index].Disponibilidade == true) {
+
+                    console.log("O livro esta disponivel")
+                    this.AcervosDeLivros[index].Disponibilidade = false
                     return true
+
                 } else {
+
+                    console.log("O livro não esta disponível")
                     return false
                 }
             }
         }
     }
 
-    Devolucao(meuLivro,tituloBusca3) {
-        
-        for (let index2 = 0; index2 < 3; index2++) {
-            if (tituloBusca3 == meuLivro.Titulos[index2]) {
-                meuLivro.Disponibilidade[index2] = true
+    Devolucao(tituloBusca3) {
+
+        for (let index2 = 0; index2 < this.AcervosDeLivros.length; index2++) {
+
+            if (tituloBusca3 == this.AcervosDeLivros[index2].Titulo) {
+
+                this.AcervosDeLivros[index2].Disponibilidade = true
+
+                console.log("Devolução executada com sucesso")
             }
         }
     }
 
-    AdicionarLivroAcervoDeLivros(meuLivro, tituloBusca4){
-        
-        for(let index3 = 0; index3 < 3; index3++){
-            if(tituloBusca4 == meuLivro.Titulos[index3]){
-                this.AcervosDeLivros[index3] = meuLivro.Titulos[index3]
-            }
-        }
+    AdicionarLivroAcervoDeLivros(livro) {
+
+        this.AcervosDeLivros.push(livro)
+        console.log("Livro adicionado no Acervo de Livros com sucesso")
+
     }
 }
 
